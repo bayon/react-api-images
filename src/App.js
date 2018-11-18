@@ -2,34 +2,35 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Header from './components/Header';
+import List from './components/List';
 import Button from './components/Button';
 
 class App extends Component {
   constructor () {
     super()
     this.state = {
-      contactsData: [],
+      groceryData: [],
     }
   }
 
   componentDidMount() {
-    fetch('http://www.forteworks.com/api/simple-api.php/contacts')
+    fetch('http://www.forteworks.com/api/simple-api.php/grocery')
     .then(results => {
       return results.json();
        
     }).then(data => {
       console.log(data);
       
-      let contactsData = data.map((contact) => {
+      let groceryData = data.map((grocery) => {
         return(
-          <li key={new Date() * Math.random()*3 } className="list-item" >
+          <li key={new Date() * Math.random()*3 } className="collection-item" >
             
-            <div className="list-item-text">{contact.contact_name}</div><Button></Button>
+            <div className="list-item-text">{grocery.name}</div><Button></Button>
           </li>
         )
       })
-      this.setState({contactsData: contactsData});
-      console.log("state", this.state.contactsData);
+      this.setState({groceryData: groceryData});
+      console.log("state", this.state.groceryData);
     })
   }
    
@@ -38,16 +39,9 @@ class App extends Component {
      
     return (
       <div className="App">
-        <Header></Header>
-        <div className="list-header">
-        <h4>Contacts:</h4>
-        </div>
-       
-        <div className="list-container">
-        <ul>
-         {this.state.contactsData}
-         </ul>
-        </div>
+        <Header title="l-o-g-o"></Header>
+        <List listHeader="grocerys" listData={this.state.groceryData}></List>
+        
       </div>
     );
   }

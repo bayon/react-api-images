@@ -16,8 +16,8 @@ class Button extends Component {
   render() {
      
     return (
-      <div className="form-item">
-        <button className="form-button ">Btn</button>
+      <div className="form-item ">
+        <button className="orange waves-effect waves-light btn ">Btn</button>
       </div>
     );
   }

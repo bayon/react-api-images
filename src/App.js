@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import axios from 'axios'
 
 class App extends Component {
   constructor () {
@@ -12,6 +10,7 @@ class App extends Component {
   }
   /*
 https://jsonplaceholder.typicode.com/posts
+https://jsonplaceholder.typicode.com/users
   */
   componentDidMount() {
     fetch('https://randomuser.me/api/?results=100')
@@ -20,9 +19,10 @@ https://jsonplaceholder.typicode.com/posts
     }).then(data => {
       let pictures = data.results.map((pic) => {
         return(
-          <div key={pic.results}>
-            <img src={pic.picture.medium} />
-          </div>
+          <li key={new Date() * Math.random()*3 } className="individual-img" >
+            <img src={pic.picture.medium} alt={pic.name.first} className="list-img" />
+            <div className="list-city">{pic.location.city}</div>
+          </li>
         )
       })
       this.setState({pictures: pictures});
@@ -35,8 +35,10 @@ https://jsonplaceholder.typicode.com/posts
      
     return (
       <div className="App">
-        <div>
-          {this.state.pictures}
+        <div className="listContainer">
+        <ul>
+         {this.state.pictures}
+         </ul>
         </div>
       </div>
     );

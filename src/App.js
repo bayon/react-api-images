@@ -8,10 +8,7 @@ class App extends Component {
       pictures: [],
     }
   }
-  /*
-https://jsonplaceholder.typicode.com/posts
-https://jsonplaceholder.typicode.com/users
-  */
+ 
   componentDidMount() {
     fetch('https://randomuser.me/api/?results=100')
     .then(results => {

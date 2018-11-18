@@ -8,7 +8,9 @@ class App extends Component {
       pictures: [],
     }
   }
- 
+ /*
+<img src={pic.picture.medium} alt={pic.name.first} className="list-img" />
+ */
   componentDidMount() {
     fetch('https://randomuser.me/api/?results=100')
     .then(results => {
@@ -17,7 +19,7 @@ class App extends Component {
       let pictures = data.results.map((pic) => {
         return(
           <li key={new Date() * Math.random()*3 } className="individual-img" >
-            <img src={pic.picture.medium} alt={pic.name.first} className="list-img" />
+            
             <div className="list-city">{pic.location.city}</div>
           </li>
         )
